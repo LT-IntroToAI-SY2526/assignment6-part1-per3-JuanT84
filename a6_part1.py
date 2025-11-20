@@ -53,7 +53,7 @@ def create_scatter_plot(data):
     """
     plt.figure(figsize=(10, 6))
     # TODO: Create a figure with size (10, 6)
-    plt.scatter(data['hours'], data['scores'], color = 'purple', alpha = 0.6 )
+    plt.scatter(data['Hours'], data['Scores'], color = 'purple', alpha = 0.6 )
     # TODO: Create a scatter plot with Hours on x-axis and Scores on y-axis
     #       Use color='purple' and alpha=0.6
     plt.xlabel('Hours Studied', fontsize=12)
@@ -89,16 +89,21 @@ def split_data(data):
     Returns:
         X_train, X_test, y_train, y_test
     """
+    X = data[['Hours']] 
     # TODO: Create X with the 'Hours' column (use double brackets to keep as DataFrame)
-    
+    y = data['Scores']
     # TODO: Create y with the 'Scores' column
-    
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42
+    )
     # TODO: Split the data using train_test_split with test_size=0.2 and random_state=42
-    
+    print(f"\n=== Data Split ===")
+    print(f"Training set: {len(X_train)} samples")
+    print(f"Testing set: {len(X_test)} samples")
     # TODO: Print how many samples are in training and testing sets
-    
+    return X_train, X_test, y_train, y_test
     # TODO: Return X_train, X_test, y_train, y_test
-    pass
+    
 
 
 def train_model(X_train, y_train):
@@ -112,14 +117,21 @@ def train_model(X_train, y_train):
     Returns:
         trained LinearRegression model
     """
+    model = LinearRegression()
+
     # TODO: Create a LinearRegression model
-    
+    model.fit(X_train, y_train)
+
     # TODO: Train the model using .fit()
-    
+    print(f"\n=== Model Training Complete ===")
+    print(f"Slope (coefficient): {model.coef_[0]:.2f}")
+    print(f"Intercept: {model.intercept_:.2f}")
+    print(f"\nEquation: Scores = {model.coef_[0]:.2f} × Hours + {model.intercept_:.2f}")
     # TODO: Print the coefficient (slope) and intercept
-    
+    return model
+
     # TODO: Return the trained model
-    pass
+    
 
 
 def evaluate_model(model, X_test, y_test):
@@ -134,18 +146,25 @@ def evaluate_model(model, X_test, y_test):
     Returns:
         predictions array
     """
+
     # TODO: Make predictions using the model
-    
+    predictions = model.predict(X_test)
     # TODO: Calculate R² score using r2_score()
-    
+    r2 = r2_score(y_test, predictions)
     # TODO: Calculate Mean Squared Error using mean_squared_error()
-    
+    mse = mean_squared_error(y_test, predictions)
     # TODO: Calculate Root Mean Squared Error (square root of MSE)
-    
+    rmse = np.sqrt(mse)
     # TODO: Print all three metrics with clear labels
+    print(f"\n=== Model Performance ===")
+    print(f"R² Score: {r2:.4f}")
+    print(f"  → Interpretation: The model explains {r2*100:.2f}% of the variance in Scores")
     
+    print(f"\nMean Squared Error: {mse:.2f}")
+    print(f"Root Mean Squared Error: {rmse:.2f}")
+    print(f"  → Interpretation: On average, predictions are off by {rmse:.2f}")
     # TODO: Return the predictions
-    pass
+    return predictions
 
 
 def visualize_results(X_train, y_train, X_test, y_test, predictions, model):
@@ -211,19 +230,19 @@ if __name__ == "__main__":
     
     # Step 1: Load and explore the data
     # TODO: Call load_and_explore_data() with 'student_scores.csv'
-    
+    data = load_and_explore_data('student_scores.csv')
     # Step 2: Visualize the relationship
     # TODO: Call create_scatter_plot() with the data
-    
+    create_scatter_plot(data)
     # Step 3: Split the data
     # TODO: Call split_data() and store the returned values
-    
+    X_train, X_test, y_train, y_test = split_data(data)
     # Step 4: Train the model
     # TODO: Call train_model() with training data
-    
+    model = train_model(X_train, y_train)
     # Step 5: Evaluate the model
     # TODO: Call evaluate_model() with the model and test data
-    
+    predictions = evaluate_model(model, X_test, y_test)
     # Step 6: Visualize results
     # TODO: Call visualize_results() with all the necessary arguments
     
