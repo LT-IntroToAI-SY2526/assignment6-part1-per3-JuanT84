@@ -25,16 +25,23 @@ def load_and_explore_data(filename):
     Returns:
         pandas DataFrame containing the data
     """
+
+    data = pd.read_csv(filename)
     # TODO: Load the CSV file using pandas
-    
+    print("=== Student Scores Data ===")
+    print(f"\nFirst 5 rows:")
+    print(data.head())
     # TODO: Print the first 5 rows
-    
+    print(f"\nDataset shape: {data.shape[0]} rows, {data.shape[1]} columns")
+
     # TODO: Print the shape of the dataset (number of rows and columns)
-    
+    print(f"\nBasic statistics:")
+    print(data.describe())
     # TODO: Print basic statistics (mean, min, max, etc.)
-    
+    return data
+
     # TODO: Return the dataframe
-    pass
+    
 
 
 def create_scatter_plot(data):
@@ -44,23 +51,32 @@ def create_scatter_plot(data):
     Args:
         data: pandas DataFrame with Hours and Scores columns
     """
+    plt.figure(figsize=(10, 6))
     # TODO: Create a figure with size (10, 6)
-    
+    plt.scatter(data['hours'], data['scores'], color = 'purple', alpha = 0.6 )
     # TODO: Create a scatter plot with Hours on x-axis and Scores on y-axis
     #       Use color='purple' and alpha=0.6
-    
+    plt.xlabel('Hours Studied', fontsize=12)
+
     # TODO: Add x-axis label: 'Hours Studied'
-    
+    plt.ylabel('Test Scores', fontsize=12)
+
     # TODO: Add y-axis label: 'Test Score'
+    plt.title('Student Test Scores vs Hours Studied', fontsize=14, fontweight='bold')
     
     # TODO: Add title: 'Student Test Scores vs Hours Studied'
-    
+
+    plt.grid(True, alpha=0.3)
+
     # TODO: Add a grid with alpha=0.3
     
+    plt.savefig('scatter_plot.png', dpi=300, bbox_inches='tight')
+
     # TODO: Save the figure as 'scatter_plot.png' with dpi=300
-    
+    print("\n✓ Scatter plot saved as 'scatter_plot.png'")
+    plt.show()
     # TODO: Show the plot
-    pass
+    
 
 
 def split_data(data):
