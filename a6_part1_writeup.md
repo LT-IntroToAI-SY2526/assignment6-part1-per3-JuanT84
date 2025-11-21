@@ -1,7 +1,7 @@
 # Assignment 6 Part 1 - Writeup
 
-**Name:** _______________  
-**Date:** _______________
+**Name:** Juan Torres  
+**Date:** 11/21/25
 
 ---
 
@@ -12,7 +12,7 @@ What does the R² score tell you about your model? What does it mean if R² is c
 
 **YOUR ANSWER:**
 
-
+The R^2 score measures the variance and how close it is to actual values. It means it is very close to actual values. If it is close to 0 it means it performs poorly in predicting. 
 
 
 ---
@@ -22,7 +22,7 @@ What does the MSE (Mean Squared Error) mean in plain English? Why do you think w
 
 **YOUR ANSWER:**
 
-
+MSE means how off the models predictions are from actual values. I think we square because it is possible to have negative values and it would give a skeewed average. Squaring it allows for us to eleminate this error.
 
 
 ---
@@ -34,7 +34,7 @@ Would you trust this model to predict a score for a student who studied 10 hours
 
 **YOUR ANSWER:**
 
-
+I would but i would also be cautious. The maximum hours set are 9 and the model could probably give a close answer but it can also be off so you could trust it to an extent. 
 
 
 ---
@@ -48,7 +48,7 @@ Looking at your scatter plot, describe the relationship between hours studied an
 - Positive or negative?
 
 **YOUR ANSWER:**
-
+It is strong, linear, and positive. 
 
 
 
@@ -58,9 +58,9 @@ Looking at your scatter plot, describe the relationship between hours studied an
 What are some real-world factors that could affect test scores that this model doesn't account for? List at least 3 factors.
 
 **YOUR ANSWER:**
-1. 
-2. 
-3. 
+1. Amount of hours slept
+2. Stress levels
+3. If the person ate or not
 
 
 ---
@@ -72,7 +72,7 @@ Why do we split our data into training and testing sets? What would happen if we
 
 **YOUR ANSWER:**
 
-
+We split so that it can start with an idea of our data. Then we compare to the actual data to see how close it was in its predictions. If we trained and tested on the same data it the model will already have seen it so it will memorize instead of predicting. 
 
 
 ---
@@ -82,7 +82,7 @@ What was the most challenging part of this assignment for you? How did you overc
 
 **YOUR ANSWER:**
 
-
+The most challenging part was making the graphs. The math model itself was pretty easy but being able to make the actual graph and get the points was challening because I did not have any previous knowledge on how to code it. I overcame it by useing the sample as reference. This helped immensly as I managed to get the graphs right.
 
 
 ---
@@ -97,8 +97,10 @@ Describe one real-world problem you could solve with linear regression. What wou
 
 **YOUR ANSWER:**
 
-
-
+weight tracker
+X = calories
+Y= weight gained
+The more you intake the more you usually gain so it is a positive corrlation and linear.
 
 ---
 
